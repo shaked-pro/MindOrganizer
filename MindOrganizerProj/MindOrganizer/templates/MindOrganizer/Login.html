@@ -5,6 +5,11 @@
         <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
     </head>
     <body>
+        {%for message in messages%}
+            {%if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+               <p id= 'tempMessage' class="alert alert-primary text-center">{{message}}</p>
+            {%endif%}
+        {%endfor%}
         <h1>&nbsp;Login</h1>
         <div class="login container bg-dark shadow-md" style = 'padding: 1%; width:fit-content; margin-left: 1%;'>
             <form method="POST">
@@ -12,5 +17,11 @@
                 {{ login_form.as_p }}
                 &nbsp;<button class = 'btn , btn-secondary' type="submit">Login</button>
             </form>
+        </div>
+        <script>
+            setTimeout(() => {
+                document.getElementById('tempMessage').style.display = 'none';
+            }, 3000);
+        </script>
     
     </body>
