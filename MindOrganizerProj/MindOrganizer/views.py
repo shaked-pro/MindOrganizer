@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from .forms import CreateUserForm , LoginForm
-#from django.contrib.auth.models import auth
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
 
 # home view for the home page
@@ -18,7 +18,7 @@ def authLogin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('dashboard')
             else:
                 print ('Invalid username or password')
                 return render(request, 'MindOrganizer/login.html', {'login_form': form, 'error': 'Invalid username or password'})
@@ -38,6 +38,11 @@ def register(request):
     return render(request, 'MindOrganizer/register.html', context)
 
 # dashboard view for the dashboard page
+@login_required(login_url='login')
 def dashboard(request):
     return render(request, 'MindOrganizer/dashboard.html')
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
 
