@@ -2,14 +2,15 @@
 <html>
     <head>
         <title>Register</title>
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
     </head>
     <body>
-        <h1>Register</h1>
-        <div class="registration">
+        <h1>&nbsp; Register</h1>
+        <div class="registration , container bg-dark shadow-md" style ='padding: 1%;'>
             <form method="POST">
                 {% csrf_token %}
                 {{ register_form.as_p }}
-                <button type="submit">Register</button>
+                &nbsp; <button class="btn btn-secondary" type="submit">Register</button>
             </form>
         </div>
     </body>

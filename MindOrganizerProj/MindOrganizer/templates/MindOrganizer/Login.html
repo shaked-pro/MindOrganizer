@@ -2,14 +2,15 @@
 <html>
     <head>
         <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
     </head>
     <body>
-        <h1>Login</h1>
-        <div class="login">
+        <h1>&nbsp;Login</h1>
+        <div class="login container bg-dark shadow-md" style = 'padding: 1%; width:fit-content; margin-left: 1%;'>
             <form method="POST">
                 {% csrf_token %}
                 {{ login_form.as_p }}
-                <button type="submit">Login</button>
+                &nbsp;<button class = 'btn , btn-secondary' type="submit">Login</button>
             </form>
     
     </body>
