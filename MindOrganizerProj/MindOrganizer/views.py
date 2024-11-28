@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .forms import CreateUserForm , LoginForm
+from .forms import CreateUserForm , LoginForm , CreateThoughtForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
 from django.contrib import messages
@@ -49,3 +49,19 @@ def logoutUser(request):
     logout(request)
     return redirect('home')
 
+@login_required(login_url='login')
+def CreateThought(request):
+    form = CreateThoughtForm()
+    if request.method == 'POST':
+        form = CreateThoughtForm(request.POST)
+        if form.is_valid():
+            thought = form.save(commit=False)
+            form.author = request.user
+            thought.save()
+            return redirect('yourThoughts')
+    context = {'createThought_form':form}
+    return render(request, 'MindOrganizer/createThought.html', context)
+
+@login_required(login_url='login')
+def yourThoughts(request):
+    return render(request, 'MindOrganizer/yourThoughts.html')
