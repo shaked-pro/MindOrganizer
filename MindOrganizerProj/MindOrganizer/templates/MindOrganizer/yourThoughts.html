@@ -55,17 +55,21 @@
                 </ul>
               </div>
         </nav>
+        <h5> hello {{user}}</h5>
         <h1>   Here is what your'e thinking about....</h1>
         <br>
-        {%for thought in thoughts%}
-            <div class="container bg-dark shadow-md" style ='padding: 1%;'>
+          <div class="container bg-dark shadow-md" style ='padding: 1%;'>
+          {%for thought in thoughts%}
+            
                 <h3>{{thought.title}}</h3>
                 <p>{{thought.content}}</p>
-            </div>
+                <p>{{thought.date_posted}}</p>
+            
             <br>
-        {%endfor%}
-        <br>
-        &nbsp;&nbsp;&nbsp;<a href =  "{%url 'logout'%}">Logout</a>
+          {%endfor%}
+          </div>
+        <br><br>
+        <div class="container bg-dark shadow-md">&nbsp;&nbsp;&nbsp;<a href =  "{%url 'logout'%}">Logout</a></div>
     </body>
     <script>
         setTimeout(() => {
