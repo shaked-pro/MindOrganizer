@@ -57,6 +57,14 @@
         </nav>
         <h1>   Here is what your'e thinking about....</h1>
         <br>
+        {%for thought in thoughts%}
+            <div class="container bg-dark shadow-md" style ='padding: 1%;'>
+                <h3>{{thought.title}}</h3>
+                <p>{{thought.content}}</p>
+            </div>
+            <br>
+        {%endfor%}
+        <br>
         &nbsp;&nbsp;&nbsp;<a href =  "{%url 'logout'%}">Logout</a>
     </body>
     <script>

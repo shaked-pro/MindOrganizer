@@ -3,6 +3,7 @@ from .forms import CreateUserForm , LoginForm , CreateThoughtForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
 from django.contrib import messages
+from .models import Thought
 
 # home view for the home page
 def home(request):
@@ -56,7 +57,7 @@ def CreateThought(request):
         form = CreateThoughtForm(request.POST)
         if form.is_valid():
             thought = form.save(commit=False)
-            form.author = request.user
+            thought.author = request.user
             thought.save()
             return redirect('yourThoughts')
     context = {'createThought_form':form}
@@ -64,4 +65,7 @@ def CreateThought(request):
 
 @login_required(login_url='login')
 def yourThoughts(request):
-    return render(request, 'MindOrganizer/yourThoughts.html')
+    currentUser = request.user.id
+    thoughts = Thought.objects.filter(author=currentUser)
+    context = {'thoughts':thoughts}
+    return render(request, 'MindOrganizer/yourThoughts.html', context)
