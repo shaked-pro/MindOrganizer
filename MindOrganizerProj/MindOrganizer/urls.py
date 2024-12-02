@@ -9,5 +9,6 @@ urlpatterns = [
     #path('dashboard/<str:pk>', views.dashboard , name='dashboard'),
     path('logout/', views.logoutUser , name='logout'),
     path('yourThoughts/', views.yourThoughts , name='yourThoughts'),
-    path('createThought/', views.CreateThought , name='createThought'),
+    path('createThought/', views.createThought , name='createThought'),
+    path('updateThought/<str:pk>', views.updateThought , name='updateThought'),
 ]

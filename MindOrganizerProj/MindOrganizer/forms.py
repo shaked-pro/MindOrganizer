@@ -19,3 +19,9 @@ class CreateThoughtForm(ModelForm):
         model = Thought
         fields = ['title', 'content']
         exclude = ['author']
+
+class UpdateThoughtForm(ModelForm):
+    class Meta:
+        model = Thought
+        fields = ['title', 'content']
+        exclude = ['author']

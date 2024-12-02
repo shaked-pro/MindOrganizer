@@ -61,7 +61,7 @@
           <form method="POST">
               {% csrf_token %}
               {{ createThought_form.as_p }}
-            &nbsp; <button class="btn btn-secondary" type="submit">Register</button>
+            &nbsp; <button class="btn btn-secondary" type="submit">Save Thought</button>
             </form>
         </div>
         &nbsp;&nbsp;&nbsp;<a href =  "{%url 'logout'%}">Logout</a>

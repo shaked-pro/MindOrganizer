@@ -51,7 +51,7 @@ def logoutUser(request):
     return redirect('home')
 
 @login_required(login_url='login')
-def CreateThought(request):
+def createThought(request):
     form = CreateThoughtForm()
     if request.method == 'POST':
         form = CreateThoughtForm(request.POST)
@@ -69,3 +69,15 @@ def yourThoughts(request):
     thoughts = Thought.objects.filter(author=currentUser)
     context = {'thoughts':thoughts}
     return render(request, 'MindOrganizer/yourThoughts.html', context)
+
+@login_required(login_url='login')
+def updateThought(request, pk):
+    thought = Thought.objects.get(id=pk)
+    form = CreateThoughtForm(instance=thought)
+    if request.method == 'POST':
+        form = CreateThoughtForm(request.POST, instance=thought)
+        if form.is_valid():
+            form.save()
+            return redirect('yourThoughts')
+    context = {'updateThought_form':form}
+    return render(request, 'MindOrganizer/updateThought.html', context)
