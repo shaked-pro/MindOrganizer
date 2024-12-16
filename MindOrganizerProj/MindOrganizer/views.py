@@ -72,7 +72,10 @@ def yourThoughts(request):
 
 @login_required(login_url='login')
 def updateThought(request, pk):
-    thought = Thought.objects.get(id=pk)
+    try :
+        thought = Thought.objects.get(id=pk, author=request.user)
+    except Thought.DoesNotExist:
+        return redirect('yourThoughts')
     form = CreateThoughtForm(instance=thought)
     if request.method == 'POST':
         form = CreateThoughtForm(request.POST, instance=thought)
